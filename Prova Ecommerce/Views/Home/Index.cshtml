@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Prova_Ecommerce.Models.Produto>
+
+@{
+    ViewBag.Title = "Darezzo Collection";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+
+
+<div class="container px-4 px-lg-5 mt-5">
+    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+        @foreach (var item in Model)
+        {
+            <div class="col mb-5">
+                <div class="card h-100">
+                    <img class="card-img-top" src="@item.Imagem" alt="..." />
+                    <div class="card-body p-4">
+                        <div class="text-center">
+                            <h5 class="fw-bolder">@item.Nome</h5>
+                            @if (item.Comdesconto.HasValue && item.Comdesconto.Value > 0)
+                            {
+                                var desconto = ((item.Preco - item.Comdesconto.Value) / item.Preco) * 100;
+                                <div style="font-size: 14px;">
+                                    <span class="text-muted text-decoration-line-through">
+                                        R$ @item.Preco.ToString("N2", new System.Globalization.CultureInfo("pt-BR"))
+                                    </span>
+                                </div>
+                                <div>
+                                    <span style="font-size: 20px;">
+                                        R$ @item.Comdesconto.Value.ToString("N2", new System.Globalization.CultureInfo("pt-BR"))
+                                    </span>
+                                    <small class="text-success fw-bold" style="font-size: 14px;">
+                                        @string.Format("{0:F0}", desconto)% OFF
+                                    </small>
+                                </div>
+                            }
+                            else
+                            {
+                                <div style="font-size: 20px;">
+                                    <span>
+                                        R$ @item.Preco.ToString("N2", new System.Globalization.CultureInfo("pt-BR"))
+                                    </span>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/Home/Detalhar?id=@item.ID">Ver detalhes</a></div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

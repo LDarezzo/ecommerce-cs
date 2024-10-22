@@ -1,0 +1,58 @@
+﻿@{
+    ViewBag.Title = "Cadastrar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Cadastro de Produto</h2>
+    <form action="/admin/cadastrar" name="cadastroForm" id="cadastroForm" method="post" enctype="multipart/form-data">
+        <div class="row mb-3">
+            <div class="col-md-8">
+                <div class="form-group">
+                    <label id="nomeLabel" for="nomeInput">Nome</label>
+                    <input id="nomeInput" name="nomeInput" class="form-control" required />
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label id="imagemLabel" for="imagemInput">Imagem</label>
+                    <input id="imagemInput" name="imagemInput" class="form-control" type="file" accept=".jpg,.jpeg,.png" required/>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label id="valorLabel" for="valorInput">Valor</label>
+                    <div class="input-group">
+                        <span class="input-group-text">R$</span>
+                        <input id="valorInput" name="valorInput" class="form-control" type="number" step="0.01" required/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label id="valorcomdescontoLabel" for="valorcomdescontoInput">Valor com desconto</label>
+                    <div class="input-group">
+                        <span class="input-group-text">R$</span>
+                        <input id="valorcomdescontoInput" name="valorcomdescontoInput" class="form-control" type="number" step="0.01" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="form-group">
+                    <label id="descricaoLabel" for="descricaoInput">Descrição</label>
+                    <textarea id="descricaoInput" name="descricaoInput" class="form-control" rows="5" required></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group text-center">
+                    <a href="/admin/index" class="btn btn-danger me-2"><i class="fas fa-arrow-left"></i> Voltar</a>
+                    <input type="submit" name="Cadastrar" class="btn btn-success" value="Cadastrar" />
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,31 @@
+﻿@model Prova_Ecommerce.Models.Produto
+
+@{
+    ViewBag.Title = Model.Nome;
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+<section class="py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="row gx-4 gx-lg-5 align-items-center">
+            <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="@Model.Imagem" alt="..." /></div>
+            <div class="col-md-6">
+                <h1 class="display-5 fw-bolder">@Model.Nome</h1>
+                <div class="fs-5 mb-5">
+                    @if (Model.Comdesconto > 0)
+                    {
+                        var desconto = ((Model.Preco - Model.Comdesconto) / Model.Preco) * 100;
+                        <span class="text-decoration-line-through">R$ @Model.Preco.ToString("N2", new System.Globalization.CultureInfo("pt-BR"))</span>
+                        <span>R$ @Model.Comdesconto.Value.ToString("N2", new System.Globalization.CultureInfo("pt-BR"))</span>
+                        <small class="text-success">@string.Format("{0:F2}", desconto)% OFF</small>
+                    }
+                    else
+                    {
+                <span>R$ @Model.Preco.ToString("N2", new System.Globalization.CultureInfo("pt-BR"))</span>
+                    }
+                </div>
+                <p class="lead" style="white-space: pre-wrap;">@Model.Descricao</p>
+            </div>
+        </div>
+    </div>
+</section>
